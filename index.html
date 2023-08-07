@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<title></title>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<h2 class="header">
+			경북대학교 수강신청 연습
+		</h2>
+		<div class="container">
+			<div style="padding-top:0.5rem;padding-bottom:1.5rem" class="head_container">
+				<img src="logo.svg" >
+				<div style="display:flex;gap:0.5rem;align-items:center;">
+					<button style="font-size:15px">
+						❔
+					</button>
+					<button>
+						수강 신청 타이머
+					</button>
+					<button onclick="PackSettingModalToggle()">
+						수강 꾸러미 설정
+					</button>
+				</div>
+			</div>
+			
+			<div class="student_info">
+				<h4>
+					학번
+				</h4>
+				<h4>
+					2000000000
+				</h4>
+				<h4>
+					성명
+				</h4>
+				<h4>
+					-
+				</h4>
+				<h4>
+					소속
+				</h4>
+				<h4>
+					컴퓨터학부
+				</h4>
+				<h4>
+					수강신청가능학점
+				</h4>
+				<h4>
+					-
+				</h4>
+				<h4>
+					수강신청학점
+				</h4>
+				<h4>
+					-
+				</h4>
+			</div>
+			<div class="lecture_info">
+				<div>
+					<h4>
+					강좌번호 (11자리) *
+					</h4>
+				</div>
+			
+				<div>
+					<input class="CodeInput">
+				</div>
+				<div>
+
+					<h4>
+					자동입력방지문자 (오른쪽 이미지 4자리) *
+					</h4>
+				</div>
+				<div>
+					<h4 class="CAPCHA">
+						
+					</h4>
+					<button onclick="CAPCHAreroll()">
+						⟳
+					</button>
+				</div>
+				<div>
+					<h4>
+					자동입력방지문자 입력 *
+					</h4>
+				</div>
+				<div>
+					<input type="text" class="CAPCHAinput" style="width: 120px;" onkeyup="javascript:if(window.event.keyCode==13){CheckCAPCHA()}">
+					<button onclick="CheckCAPCHA()">
+						확인
+					</button>
+				</div>
+				<h4 style="font-weight:100">
+					
+				</h4>
+			</div>
+			<div class="search_button" align="right">
+				<button style="background-color:#747e87;color:#ffffff;border:none;border-radius:4px;padding:10px;font-weight:bold;" onclick="SearchButton()">
+				조회
+			</button>
+			</div>
+			<div class="radio_container" style="border-bottom: 1px solid #cccccc;padding-bottom:10px;">
+				<input type="radio" class="radio_button" name="chk_info" id="Search" value="Search" checked><label for="Search">과목 검색</label>
+				<input type="radio" class="radio_button" name="chk_info" id="Pack" value="Pack"><label for="Pack">꾸러미신청목록</label>
+			</div>
+			<div class="search_info" style="margin-top: 1rem;">
+				<div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.7rem">
+					<h4 style="font-weight:100">
+					교과목 목록
+					</h4>
+					<h5 style="font-weight:100">
+						0건
+					</h5>
+				</div>
+				<table class="list">
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							신청
+						</th>
+						<th>
+							교과목코드
+						</th>
+						<th>
+							교과목명
+						</th>
+						<th>
+							분반
+						</th>
+						<th>
+							교과구분
+						</th>
+						<th>
+							학점
+						</th>
+						<th>
+							재이수년도
+						</th>
+						<th>
+							재이수학기
+						</th>
+						<th>
+							강의시간
+						</th>
+						<th>
+							제한인원
+						</th>
+						<th>
+							수강인원
+						</th>
+					</tr>	
+				</table>
+				<div class="no_result">조회된 목록이 없습니다.</div>
+			</div>
+			<div class="pack_info" style="margin-top: 1rem;">
+				<div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.7rem">
+					<h4 style="font-weight:100">
+					꾸러미 신청 목록
+					</h4>
+					<h5 style="font-weight:100">
+						0건
+					</h5>
+				</div>
+				<table class="list">
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							신청
+						</th>
+						<th>
+							교과목코드
+						</th>
+						<th>
+							교과목명
+						</th>
+						<th>
+							분반
+						</th>
+						<th>
+							교과구분
+						</th>
+						<th>
+							학점
+						</th>
+						<th>
+							재이수년도
+						</th>
+						<th>
+							재이수학기
+						</th>
+						<th>
+							강의시간
+						</th>
+						<th>
+							제한인원
+						</th>
+						<th>
+							수강인원
+						</th>
+						<th>
+							신청클릭수
+						</th>
+					</tr>
+				</table>
+			</div>
+			<h5 style="background-color:#d1edf1;color:#1c444c;border:1px solid #cedde0;margin:20px 0 30px;border-radius:6px;line-height: 150%;padding:0.7rem;font-weight:100">
+				수강신청의 [신청]을 500회 이상 클릭 시 수강꾸러미목록에서 해당 과목이 삭제됩니다.<br>
+				교과구분변경은 이수 후 통합정보시스템에서 변경 가능 합니다.
+			</h5>
+			<div class="signed_info">
+				<div style="display:flex;align-items:flex-end;gap:0.2rem;margin-bottom:0.7rem">
+					<h3>
+					수강신청목록
+					</h3>
+					<h5 style="font-weight:100">
+						0건
+					</h5>
+				</div>
+				<table class="list">
+					<tr>
+						<th>
+							No.
+						</th>
+						<th>
+							삭제
+						</th>
+						<th>
+							교과목코드
+						</th>
+						<th>
+							교과목명
+						</th>
+						<th>
+							분반
+						</th>
+						<th>
+							교과구분
+						</th>
+						<th>
+							학점
+						</th>
+						<th>
+							재이수년도
+						</th>
+						<th>
+							재이수학기
+						</th>
+						<th style="width:750px;">
+							강의시간
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<h4 class="footer">
+			경북대학교 수강신청 연습 사이트입니다. 실제 수강 신청 사이트와 다를 수 있습니다.
+			<br>
+			github: http://어쩌구저쩌구.com
+		</h4>
+		<div class="background" style="display:none">
+			<div class="popup">
+				<div class="popup_header">
+					<h4>
+						수강 꾸러미 설정
+					</h4>
+					<button onclick="PackSettingModalToggle()">
+						✖
+					</button>
+				</div>
+				<div class="content">
+					<h4 style="font-weight:100">
+						수강 꾸러미에 넣을 과목 코드를 입력해주세요.<br>
+						수강 꾸러미에 들어간 과목은 <strong>"꾸러미신청목록"</strong>에 들어가며,<br>
+						과목 코드 검색, 자동입력방지문자 입력 없이 수강신청 가능합니다.
+					</h4>
+					<h5 style="font-weight:100;margin:5px 0 5px 0; border:1px solid black;padding:5px">
+						<strong>NOTICE</strong><br>
+						수강 코드 입력 후, 수강 꾸러미 저장 버튼을 눌러주세요.<br>
+						올바른 코드가 꾸러미에 저장되었다면, 교과목 이름이 정상적으로 표기됩니다.<br>
+						저장 이후 페이지를 새로고침 해주세요.<br>
+						새로고침 이후, 꾸러미신청목록에 과목이 추가됩니다.
+					</h5>
+					<h4>
+						수강 꾸러미 목록
+					</h4>
+					<table class="list">
+						<tbody>
+							<tr>
+								<th>
+									No.
+								</th>
+								<th>
+									교과목코드
+								</th>
+								<th>
+									교과목이름
+								</th>
+								<th>
+									삭제
+								</th>
+							</tr>
+							<tr id="Add">
+								<th>
+									5
+								</th>
+								<th colspan='3'>
+									<button onclick="PackAddInput()">
+										추가
+									</button>
+								</th>
+								
+							</tr>
+						</tbody>
+					</table>
+					<button onclick="PackEval()">
+						수강 꾸러미 저장
+					</button>
+					<!-- <div class="PackSetting">
+						1. <input maxlength='11' placeholder="과목코드입력 (11자리)"> 자료구조 ✔️
+					</div>
+					<div class="PackSetting">
+						2. <input maxlength='11' placeholder="과목코드입력 (11자리)"> 올바르지 않은 과목코드 🚫
+					</div>
+					<div class="PackSetting">
+						3. <input maxlength='11' placeholder="과목코드입력 (11자리)"> 
+					</div> -->
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

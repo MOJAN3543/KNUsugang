@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap');
+
+*{
+	font-family : 'Nanum Gothic';
+	margin: 0;
+	padding: 0;
+
+}
+
+button{
+	cursor: pointer; 
+}
+
+
+
+.header{
+	width: max(1500px, 100%);
+	
+	height: 30px;
+	background-color:#da2128;
+	color: white;
+	font-weight:bold;
+	/* overflow-x: none; */
+}
+
+.container{
+	width: 1500px;
+	margin-top: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.head_container{
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.head_container > div > button{
+	font-size: 15px;
+    padding: 5px;
+    font-weight: 900;
+    color: white;
+    background-color: #da2128;
+    border: none;
+    border-radius: 4px;
+}
+
+/* @media all and (max-width: 1520px){
+	.container{
+		width: 1100px;
+	}
+	.lecture_info > div:nth-child(2n){
+		width: 25%;
+	}
+} */
+/* @media all and (max-width: 1024px){
+	.container{
+		width: 800px;
+	}
+	.lecture_info > div:nth-child(2n){
+		width: 30%;
+	}
+} */
+/* 나중에 반응형 손보기 */
+.student_info{
+	display: flex;
+	border-top: black solid 1px;
+	border-bottom: #eeefef solid 3px;
+	margin-bottom: 1rem;
+}
+.student_info > h4{
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	
+}
+.student_info > h4:nth-child(2n-1){
+	background-color: #f3f4f6;
+	width: 13%;
+	text-align: center;
+}
+.student_info > h4:nth-child(2n){
+	width: 10%;
+	font-weight: 100;
+}
+
+.lecture_info{
+	display: flex;
+	height: 70px;
+	align-items: center;
+	border-top: black solid 1px;
+	border-bottom: #eeefef solid 3px;
+	margin-bottom: 1rem;
+}
+
+.lecture_info > div{
+	height: 100%;
+}
+.lecture_info > div:nth-child(2n-1){
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #d32a3d;
+	background-color: #f3f4f6;
+	width: 11%;
+	height: 100%;
+	text-align: center;
+	word-break: keep-all;
+}
+.lecture_info > div > button{
+	background-color: #d32a3d;
+	color: #ffffff;
+	height: 35px;
+	width: 50px;
+	font-size: 1rem;
+	font-weight: 600;
+	border-radius: 0px 5px 5px 0px / 0px 5px 5px 0px;
+	border: none;
+}
+
+.lecture_info > div > input{
+	height: 30px;
+	font-size: 20px;
+	width: 166px;
+}
+
+.lecture_info > div:nth-child(2n){
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	width: 14%;
+}
+.CAPCHA{
+	font-size: 38px;
+	font-weight: 900;
+	letter-spacing: 7px;
+	color: #fafafa;
+	text-shadow: 0px 0px 1px #555555;
+	margin-right: 10px;
+	font-family: monospace;
+	-webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+    text-decoration: line-through 2.2px black;
+}
+
+.radio_button {
+    display: none;
+}
+.radio_button + label {
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #f1f1f1;
+    border-bottom: none;
+    border-radius: 5px 5px 0px 0px/ 5px 5px 0px 0px;
+	cursor: pointer;
+}
+.radio_button:checked + label {
+    background-color: #ffffff;
+    color: #a44854;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+    border-bottom: 1px solid #ffffff;
+}
+.radio_container:has(.radio_button:nth-child(1):checked) ~ .pack_info{
+	display: none;
+}
+.radio_container:has(.radio_button:nth-child(1):not(:checked)) ~ .search_info{
+	display: none;
+}
+
+
+.list{
+	width: 100%;
+	border-top: 1px solid #bbbbbb;
+    border-collapse: collapse;
+	font-size: 14px;
+}
+
+.list > tbody > tr > th{
+	padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+}
+
+.list > tbody > tr:nth-child(1) > th{
+	background-color: #f3f4f6;
+}
+
+.list > tbody > tr:nth-child(n+2) > th{
+	font-weight: 100;
+}
+
+.list > tbody > tr > th,td {
+    border-bottom: 1px solid #bbbbbb;
+    border-left: 1px solid #bbbbbb;
+}
+.list > tbody > tr >th:first-child{
+    border-left: none;
+}
+
+.signup{
+	background-color:#cd1226;
+	color:#ffffff;
+	padding: 6px 11px 6px 11px;
+	border:none;
+	margin: 4px;
+	width: 48px;
+	border-radius:3px;
+	font-weight: bold;
+}
+
+.no_result{
+	margin: 1rem 0 1rem;
+	padding: 50px 0 60px;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: #666666;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.footer{
+	width: max(1500px, 100%);
+	color: #ffffff;
+	font-size: 20px;
+	background-color: #da2128;
+	margin-top: max(calc(1253px - 100%), 5rem);
+	margin-bottom: 0rem;
+}
+
+.background{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+}
+
+.popup{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	/* height: 500px; */
+	transform: translate(-50%, -50%);
+	background-color: #ffffff;
+	border: 2px solid black;
+}
+
+.popup_header{
+	display: flex;
+	justify-content: space-between;
+	background: #da2128;
+	font-size: 20px;
+	font-weight: 900;
+	color:#ffffff;
+	padding: 7px;
+}
+.popup_header > button{
+	color: #ffffff;
+	font-weight: 900;
+	background-color: #da2128;
+	font-size: 15px;
+	padding: 0 3px 2px 3px;
+	border: 2px solid white;
+	
+}
+
+.content{
+	display: flex;
+	flex-direction: column;
+	margin: 15px;
+	gap: 10px;
+}
+
+.PackSetting > input{
+	padding: 2px;
+	font-size: 15px;
+	width: 150px;
+	text-align: center;
+}
+
+.content_table{
+	
+}
+
+.list > tbody > tr > th > input {
+	text-align: center;
+}
+
+/* .list > tbody > tr > th{
+	padding: 0.3rem 0.7rem 0.3rem 0.7rem;
+}
+
+.list > tbody > tr:nth-child(1) > th{
+	background-color: #f3f4f6;
+}
+
+.list > tbody > tr:nth-child(n+2) > th{
+	font-weight: 100;
+}
+
+.list > tbody > tr > th,td {
+    border-bottom: 1px solid #bbbbbb;
+    border-left: 1px solid #bbbbbb;
+}
+.list > tbody > tr >th:first-child{
+    border-left: none;
+} */
