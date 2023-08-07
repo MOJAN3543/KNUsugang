@@ -1,18 +1,5 @@
 let isCAPCHAed = false;
 			
-			function cookieTest(){
-				document.cookie = "Pack1 = CLTR0058002";
-				document.cookie = "Pack2 = COME0311002";
-				document.cookie = "Pack3 = COME0331009";
-				document.cookie = "Pack4 = COMP0216002";
-				document.cookie = "Pack5 = ELEC0462001";
-				document.cookie = "Pack6 = MTED0231001";
-				
-				
-				document.cookie = "Lec1 = COME0311002";
-				document.cookie = "Lec2 = MTED0231001";
-			}
-			
 			function CookieToPack(){
 				let CookieString = document.cookie;
 				let CookieList = CookieString.split(";");
@@ -447,7 +434,7 @@ let isCAPCHAed = false;
 					let Key = "Pack" + String(index);
 					if(CookieDict[Key] == undefined)
 						break;
-					document.cookie = Key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/HTML-CSS-JS/knuSugang;";
+					document.cookie = Key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;";
 				}
 				
 				List.forEach((Code, index) => {
@@ -543,7 +530,7 @@ let isCAPCHAed = false;
 					NextIndex++;
 				}
 				
-				document.cookie = `Lec${NextIndex-1} =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/HTML-CSS-JS/knuSugang;`;
+				document.cookie = `Lec${NextIndex-1} =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;`;
 			}
 			
 			window.onload = function(){
