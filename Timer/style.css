@@ -1,0 +1,39 @@
+.container{
+	width:100%;
+}
+
+.progress{
+	display: flex;
+}
+
+.barTimer{
+	display: flex;
+	flex-direction: column;
+}
+
+.go, .stop{
+	padding: 0.2rem;
+	width: 50%;
+	font-weight: 900;
+	text-align: center;
+}
+
+.go{
+	background-color: #DF6464;
+	color: #FAE8E8;
+	text-shadow: #1F0E0E 1px 0 10px;
+}
+.stop{
+	background-color: #64DF95;
+	color: #E8FAE8;
+	text-shadow: #0E1F0E 1px 0 10px;
+}
+
+.progressCursor{
+	animation-name: CursorMove;
+  animation-duration:2s;
+  animation-duration: leaner;
+  animation-iteration-count:3;
+  animation-direction:alternate;
+  animation-fill-mode: forwards;
+}
