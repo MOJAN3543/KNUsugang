@@ -51,7 +51,7 @@ let isCAPCHAed = false;
 				
 				let ret = [];
 				
-				fetch("https://mojan.pe.kr/LectureCodeAPI.php?Year=2023&Semester=0&Code="+Code)
+				fetch("https://mojan.pe.kr/LectureCodeAPI.php?Year=2024&Semester=0&Code="+Code)
 					.then((response) => response.json())
 					.then((LectureData) => {
 					LectureData['data'].forEach((Lecture, index) => {
