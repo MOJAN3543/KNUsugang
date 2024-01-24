@@ -566,7 +566,7 @@ let isCAPCHAed = false;
 				let win = window.open("https://mojan3543.github.io/KNUsugang/Timer");
 			}
 
-			function TimerInit(){
+			function TimerInit(LectureDataList){
 				let Time = new Date();
 
 				let timerContainer = document.querySelector(".timer_container");
@@ -591,7 +591,7 @@ let isCAPCHAed = false;
 
 				for(let index = 0; index < lectSize; index++){
 					let timerModel = document.createElement("h3");
-    				timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
+    				timerModel.innerHTML = `#${index+1} ${LectureDataList[index][1]}: ${TimeList[index]}`;
     				timerContainer.appendChild(timerModel);
 				}
 
@@ -619,7 +619,7 @@ let isCAPCHAed = false;
 				
 				PackSettingListInit();
 
-				TimerInit();
+				setTimeout(function(){TimerInit(LectureDataList)}, 1500);
 				
 				CAPCHAreroll();
 			}
