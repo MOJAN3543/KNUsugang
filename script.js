@@ -16,9 +16,10 @@ let isCAPCHAed = false;
 					let Key = "Pack" + String(index);
 					if(CookieDict[Key] == undefined)
 						break;
+					if(Object.values(CookieDict).filter(element => element === CookieDict[Key]).length != 1)
+						continue;
 					ret.push(CookieDict[Key]);
 				}
-				
 				return ret;
 			}
 			
@@ -37,6 +38,28 @@ let isCAPCHAed = false;
 				
 				for(let index=1;;index++){
 					let Key = "Lec" + String(index);
+					if(CookieDict[Key] == undefined)
+						break;
+					ret.push(CookieDict[Key]);
+				}
+				
+				return ret;
+			}
+
+			function CookieToTime(){
+				let CookieString = document.cookie;
+				let CookieList = CookieString.split(";");
+				let CookieDict = {};
+				
+				CookieList.forEach((Cookie, index)=>{
+					let CookieSplit = Cookie.trim().split("=");
+					CookieDict[CookieSplit[0]] = CookieSplit[1];
+				});
+				
+				let ret = [];
+				
+				for(let index=1;;index++){
+					let Key = "Time" + String(index);
 					if(CookieDict[Key] == undefined)
 						break;
 					ret.push(CookieDict[Key]);
@@ -387,6 +410,7 @@ let isCAPCHAed = false;
 				let PackSettingTRList = document.querySelectorAll(".content > table > tbody > tr");
 				if(PackSettingTRList[index].querySelector("th:nth-child(3)").innerHTML.indexOf("✔️") != -1){
 					// CookieRemove(PackSettingTRList[index].querySelector("th:nth-child(2)").value);
+					CookieRemoveByIndex(index);
 				}
 				for(let i=index+1; i<PackSettingTRList.length; i++){
 					PackSettingTRList[i].querySelector("th:nth-child(1)").innerHTML -= 1;
@@ -407,14 +431,14 @@ let isCAPCHAed = false;
 					CookieDict[CookieSplit[0]] = CookieSplit[1];
 				});
 				
-				document.cookie = "Key"+String(index)+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+				document.cookie = "Key"+String(index)+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;";
 				
 				for(let i=index+1;;i++){
 					let Key = "Pack" + String(i);
 					let MovedKey = "Pack" + String(i-1);
 					if(CookieDict[Key] == undefined)
 						break;
-					document.cookie = Key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+					document.cookie = Key + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;";
 					document.cookie = MovedKey + "=" + "" + CookieDict[Key];
 				}
 				
@@ -498,8 +522,11 @@ let isCAPCHAed = false;
 						break;
 					NextIndex++;
 				}
+
+				let elapsedTime = `${(Time.getMinutes()%5)*60+Time.getSeconds()}.${Time.getMilliseconds()}s`;
 				
-				document.cookie = `Lec${NextIndex} = ${Code}; expires=${DeleteTime.toGMTString()}`;
+				document.cookie = `Lec${NextIndex} = ${Code}; expires=${DeleteTime.toGMTString()}; path=/KNUsugang;`;
+				document.cookie = `Time${NextIndex} = ${elapsedTime}; expires=${DeleteTime.toGMTString()}; path=/KNUsugang;`;
 				
 			}
 			
@@ -527,12 +554,43 @@ let isCAPCHAed = false;
 					if(CookieDict["Lec"+String(NextIndex)] == undefined)
 						break;
 					document.cookie = `Lec${NextIndex-1} = ${CookieDict["Lec"+String(NextIndex)]}`;
+					document.cookie = `Time${NextIndex-1} = ${CookieDict["Time"+String(NextIndex)]}`;
 					NextIndex++;
 				}
-				
+				console.log(NextIndex);
 				document.cookie = `Lec${NextIndex-1} =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;`;
+				document.cookie = `Time${NextIndex-1} =; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/KNUsugang;`;
 			}
 			
+			function TimerOpen(){
+				let win = window.open("https://mojan3543.github.io/KNUsugang/Timer");
+			}
+
+			function TimerInit(){
+				let Time = new Date();
+
+				let timerContainer = document.querySelector(".timer_container");
+				if(isSignTime(Time) == false)
+					return;
+				console.log("Good!");
+
+				let titleModel = document.createElement("h1");
+				
+				let PackList = CookieToPack();
+				let LectList = CookieToLecture();
+				
+				let lectSize = LectList.length;
+				let totalSize = PackList.length + lectSize;
+				
+				if(lectSize >= totalSize)
+					titleModel.innerHTML = "🏆 올 클리어 🏆";
+				else
+					titleModel.innerHTML = `🏃‍♂️ 수강신청 중 ... (${lectSize}/${totalSize})`;
+				
+				timerContainer.appendChild(titleModel);
+
+			}
+
 			window.onload = function(){
 
 				
@@ -554,6 +612,8 @@ let isCAPCHAed = false;
 				setTimeout(function(){LectureListToHTML(LectureDataList)}, 800);
 				
 				PackSettingListInit();
+
+				TimerInit();
 				
 				CAPCHAreroll();
 			}
