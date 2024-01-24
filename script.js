@@ -578,6 +578,7 @@ let isCAPCHAed = false;
 				
 				let PackList = CookieToPack();
 				let LectList = CookieToLecture();
+				let TimeList = CookieToTime();
 				
 				let lectSize = LectList.length;
 				let totalSize = PackList.length + lectSize;
@@ -588,6 +589,11 @@ let isCAPCHAed = false;
 					titleModel.innerHTML = `🏃‍♂️ 수강신청 중 ... (${lectSize}/${totalSize})`;
 				
 				timerContainer.appendChild(titleModel);
+
+				for(let index = 1; index <= lectSize; index++){
+					let timerModel = document.createElement("h3");
+					timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
+				}
 
 			}
 
@@ -600,7 +606,7 @@ let isCAPCHAed = false;
 					PackDataList.push(LectureCodeToLectureData(Pack));
 				});
 				
-				setTimeout(function(){PackListToHTML(PackDataList)}, 800);
+				setTimeout(function(){PackListToHTML(PackDataList)}, 1000);
 				
 				
 				let CookieLectureList = CookieToLecture();
@@ -609,7 +615,7 @@ let isCAPCHAed = false;
 					LectureDataList.push(LectureCodeToLectureData(Lecture));
 				});
 				
-				setTimeout(function(){LectureListToHTML(LectureDataList)}, 800);
+				setTimeout(function(){LectureListToHTML(LectureDataList)}, 1000);
 				
 				PackSettingListInit();
 
