@@ -593,6 +593,7 @@ let isCAPCHAed = false;
 				for(let index = 1; index <= lectSize; index++){
 					let timerModel = document.createElement("h3");
 					timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
+					timerContainer.appendChild(timerModel);
 				}
 
 			}
@@ -606,7 +607,7 @@ let isCAPCHAed = false;
 					PackDataList.push(LectureCodeToLectureData(Pack));
 				});
 				
-				setTimeout(function(){PackListToHTML(PackDataList)}, 1000);
+				setTimeout(function(){PackListToHTML(PackDataList)}, 1500);
 				
 				
 				let CookieLectureList = CookieToLecture();
@@ -615,7 +616,7 @@ let isCAPCHAed = false;
 					LectureDataList.push(LectureCodeToLectureData(Lecture));
 				});
 				
-				setTimeout(function(){LectureListToHTML(LectureDataList)}, 1000);
+				setTimeout(function(){LectureListToHTML(LectureDataList)}, 1500);
 				
 				PackSettingListInit();
 
