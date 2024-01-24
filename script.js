@@ -572,7 +572,6 @@ let isCAPCHAed = false;
 				let timerContainer = document.querySelector(".timer_container");
 				if(isSignTime(Time) == false)
 					return;
-				console.log("Good!");
 
 				let titleModel = document.createElement("h1");
 				
@@ -592,8 +591,8 @@ let isCAPCHAed = false;
 
 				for(let index = 0; index < lectSize; index++){
 					let timerModel = document.createElement("h3");
-					timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
-					timerContainer.appendChild(timerModel);
+    				timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
+    				timerContainer.appendChild(timerModel);
 				}
 
 			}
