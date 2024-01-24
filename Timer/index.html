@@ -5,6 +5,9 @@
 		<link rel="stylesheet" href="style.css">
 		<title></title>
 		<script>
+			let isMusicPlaying = false;
+			let CanPlayMusic = false;
+			let audio = new Audio('Start.mp3');
 			function UpdateClock(){
 				let clock = document.querySelector("h2");
 				let time = new Date();
@@ -43,6 +46,12 @@
 					Cursor.innerHtml = "🛌";
 				}
 			}
+			function StartMusicPlay(){
+				audio.muted = true;
+				audio.play();
+				audio.muted = false;
+				setTimeout(function(){isMusicPlaying = false;}, 12000);
+			}
 			function UpdateCursor(){
 				let time = new Date();
 				let minutes = time.getMinutes();
@@ -52,11 +61,29 @@
 				
 				let Cursor = document.querySelector("h5");
 				Cursor.style.cssText = `position:relative;width:17px;left:calc(${ratio*100}% - 17px * ${ratio})`;
+
+			}
+			function UpdateMusic(){
+				let time = new Date();
+				let minutes = time.getMinutes();
+				let seconds = time.getSeconds();
+				let miliseonds = time.getMilliseconds();
+				if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 810) && !isMusicPlaying && CanPlayMusic){
+					isMusicPlaying = true;
+					StartMusicPlay();
+				}
+				let checkVal = document.querySelector('input[type=checkbox]:checked');
+				if(checkVal )
+					CanPlayMusic = true;
+				else
+					CanPlayMusic = false;
+
 			}
 			function TheTimeGoesOn(){
 				setInterval(UpdateClock, 10);
 				setInterval(UpdateDisplay, 100);
 				setInterval(UpdateCursor, 100);
+				setInterval(UpdateMusic, 10);
 			}
 			window.onload = () => {
 				TheTimeGoesOn();
@@ -89,7 +116,7 @@
 					</h5>
 				</div>
 			</div>
-			
+			<input type="checkbox" name="Music"> 수강 신청 직전 소리로 알려주기
 		</div>
 	</body>
 </html>

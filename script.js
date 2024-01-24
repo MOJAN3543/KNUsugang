@@ -606,7 +606,7 @@ let isCAPCHAed = false;
 					PackDataList.push(LectureCodeToLectureData(Pack));
 				});
 				
-				setTimeout(function(){PackListToHTML(PackDataList)}, 1500);
+				setTimeout(function(){PackListToHTML(PackDataList)}, 1300);
 				
 				
 				let CookieLectureList = CookieToLecture();
@@ -615,11 +615,11 @@ let isCAPCHAed = false;
 					LectureDataList.push(LectureCodeToLectureData(Lecture));
 				});
 				
-				setTimeout(function(){LectureListToHTML(LectureDataList)}, 1500);
+				setTimeout(function(){LectureListToHTML(LectureDataList)}, 1300);
 				
 				PackSettingListInit();
 
-				setTimeout(function(){TimerInit(LectureDataList)}, 1500);
+				setTimeout(function(){TimerInit(LectureDataList)}, 1300);
 				
 				CAPCHAreroll();
 			}
