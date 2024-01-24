@@ -590,7 +590,7 @@ let isCAPCHAed = false;
 				
 				timerContainer.appendChild(titleModel);
 
-				for(let index = 1; index <= lectSize; index++){
+				for(let index = 0; index < lectSize; index++){
 					let timerModel = document.createElement("h3");
 					timerModel.innerHTML = `#${index} ${LectList[index]}: ${TimeList[index]}`;
 					timerContainer.appendChild(timerModel);
