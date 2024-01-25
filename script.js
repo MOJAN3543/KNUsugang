@@ -496,7 +496,7 @@ let isCAPCHAed = false;
 			}
 			
 			function isSignTime(Time){
-				if(Time.getMinutes()%5 <= 1 || (Time.getMinutes()%5 == 2 && Time.getSeconds() <= 29))
+				if(Time.getMinutes()%3 == 0 || (Time.getMinutes()%3 == 1 && Time.getSeconds() <= 29))
 					return true;
 				return false;
 			}
@@ -505,7 +505,7 @@ let isCAPCHAed = false;
 				let Time = new Date();
 
 				let DeleteTime = new Date()
-				DeleteTime.setMinutes(Time.getMinutes()-(Time.getMinutes()%5)+4, 0, 0);
+				DeleteTime.setMinutes(Time.getMinutes()-(Time.getMinutes()%3)+1, 45, 0);
 				
 				let CookieString = document.cookie;
 				let CookieList = CookieString.split(";");
@@ -523,7 +523,7 @@ let isCAPCHAed = false;
 					NextIndex++;
 				}
 
-				let elapsedTime = `${(Time.getMinutes()%5)*60+Time.getSeconds()}.${Time.getMilliseconds()}s`;
+				let elapsedTime = `${(Time.getMinutes()%3)*60+Time.getSeconds()}.${Time.getMilliseconds()}s`;
 				
 				document.cookie = `Lec${NextIndex} = ${Code}; expires=${DeleteTime.toGMTString()}; path=/KNUsugang;`;
 				document.cookie = `Time${NextIndex} = ${elapsedTime}; expires=${DeleteTime.toGMTString()}; path=/KNUsugang;`;

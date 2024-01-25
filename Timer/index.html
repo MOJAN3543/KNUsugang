@@ -23,12 +23,12 @@
 			function NextStopMinutes(){
 				let time = new Date();
 				let minutes = time.getMinutes();
-				return parseInt(minutes/5)*5+2;
+				return parseInt(minutes/3)*3+1;
 			}
 			function NextGoMinutes(){
 				let time = new Date();
 				let minutes = time.getMinutes();
-				return parseInt(minutes/5)*5+5;
+				return parseInt(minutes/3)*3+3;
 			}
 			function UpdateDisplay(){
 				let time = new Date();
@@ -37,12 +37,12 @@
 				let hour = time.getHours();
 				let minutes = time.getMinutes();
 				let seconds = time.getSeconds();
-				if((minutes%5<2) || (minutes%5==2&&seconds<30)){
+				if((minutes%3==0) || (minutes%3==1&&seconds<30)){
 					DisplayH4.innerHTML = `수강 신청 종료 - ${hour}시 ${NextStopMinutes()}분 30초`;
 					Cursor.innerHTML = "👨‍💻";
 				}
 				else{
-					DisplayH4.innerHTML = `수강 신청 시작 - ${hour}시 ${NextGoMinutes()}분 00초`;
+					DisplayH4.innerHTML = `다음 수강 신청 - ${hour}시 ${NextGoMinutes()}분 00초`;
 					Cursor.innerHtml = "🛌";
 				}
 			}
@@ -57,7 +57,7 @@
 				let minutes = time.getMinutes();
 				let seconds = time.getSeconds();
 				let milliseconds = time.getMilliseconds()
-				let ratio = ((minutes%5)*60+seconds+milliseconds*0.001)/300;
+				let ratio = ((minutes%3)*60+seconds+milliseconds*0.001)/180;
 				
 				let Cursor = document.querySelector("h5");
 				Cursor.style.cssText = `position:relative;width:17px;left:calc(${ratio*100}% - 17px * ${ratio})`;
@@ -68,7 +68,7 @@
 				let minutes = time.getMinutes();
 				let seconds = time.getSeconds();
 				let miliseonds = time.getMilliseconds();
-				if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 985) && !isMusicPlaying && CanPlayMusic){
+				if(minutes%3 == 2 && seconds == 50 && (miliseonds >= 885) && !isMusicPlaying && CanPlayMusic){
 					isMusicPlaying = true;
 					StartMusicPlay();
 				}
@@ -99,7 +99,7 @@
 			<div class= "barTimer">
 				<div class="middle">
 					<h4 style="font-weight:100;text-align:center;margin:0">
-						수강 신청 종료 - 13시 22분 30초
+						로딩중
 					</h4>
 				</div>
 				<div class="progress">
