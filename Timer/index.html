@@ -68,7 +68,8 @@
 				let minutes = time.getMinutes();
 				let seconds = time.getSeconds();
 				let miliseonds = time.getMilliseconds();
-				if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 810) && !isMusicPlaying && CanPlayMusic){
+				//if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 985) && !isMusicPlaying && CanPlayMusic){
+				if(seconds == 50 && (miliseonds >= 885) && !isMusicPlaying && CanPlayMusic){
 					isMusicPlaying = true;
 					StartMusicPlay();
 				}
@@ -83,7 +84,7 @@
 				setInterval(UpdateClock, 10);
 				setInterval(UpdateDisplay, 100);
 				setInterval(UpdateCursor, 100);
-				setInterval(UpdateMusic, 10);
+				setInterval(UpdateMusic, 5);
 			}
 			window.onload = () => {
 				TheTimeGoesOn();
