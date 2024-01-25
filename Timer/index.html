@@ -68,8 +68,7 @@
 				let minutes = time.getMinutes();
 				let seconds = time.getSeconds();
 				let miliseonds = time.getMilliseconds();
-				//if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 985) && !isMusicPlaying && CanPlayMusic){
-				if(seconds == 50 && (miliseonds >= 885) && !isMusicPlaying && CanPlayMusic){
+				if(minutes%5 == 4 && seconds == 50 && (miliseonds >= 985) && !isMusicPlaying && CanPlayMusic){
 					isMusicPlaying = true;
 					StartMusicPlay();
 				}
