@@ -72,6 +72,10 @@ let isCAPCHAed = false;
 				let Code = LectureCode.substr(0, 8);
 				let Div = LectureCode.substr(8);
 				
+				if(Code.substr(0, 4) == "TEMP"){
+					return [Code, "임시 과목", Div, "임시", "3", "", "", "-", '-', "-"];
+				}
+
 				let ret = [];
 				
 				fetch("https://mojan.pe.kr/LectureCodeAPI.php?Year=2024&Semester=0&Code="+Code)
@@ -327,6 +331,7 @@ let isCAPCHAed = false;
 				if(Code != null)
 					inputModel.value = Code;
 				inputModel.placeholder = "과목코드입력 (11자리)";
+				inputModel.value = "TEMP000000"+PackSettingTRList.length;
 				InputTHmodel.appendChild(inputModel);
 				trModel.appendChild(InputTHmodel);
 				
